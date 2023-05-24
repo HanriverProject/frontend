@@ -1,8 +1,4 @@
-import SvgTagProps from '@/types/SvgTagProps';
-
-const GitHubIcon = ({ className }: SvgTagProps) => {
-  return (
-    <svg
+<svg
       width="50"
       height="50"
       viewBox="0 0 50 50"
@@ -102,7 +98,3 @@ const GitHubIcon = ({ className }: SvgTagProps) => {
         fill="#472B29"
       />
     </svg>
-  );
-};
-
-export default GitHubIcon;

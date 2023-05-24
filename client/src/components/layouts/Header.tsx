@@ -8,7 +8,7 @@ import {
   headerTopLeft,
   headerTopRight,
   headerIconList,
-} from '../../constants/headerCnstants';
+} from '../../constants/headerConstants';
 
 interface HeaderProps {}
 
