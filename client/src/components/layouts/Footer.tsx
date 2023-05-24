@@ -1,8 +1,7 @@
-import FaceBookIcon from '@/assets/icons/FaceBookIcon';
-import GitHubIcon from '@/assets/icons/GitHubIcon';
-import InstaGramIcon from '@/assets/icons/InstaGramIcon';
 import Link from 'next/link';
 import { FC } from 'react';
+import { FooterIcon, IconSize } from '@/constants/FooterConstants';
+import Image from 'next/image';
 
 interface FooterProps {}
 
@@ -20,16 +19,31 @@ const Footer: FC<FooterProps> = ({}) => {
         </div>
         <figure className=" flex gap-2 md:mt-0 mt-4">
           <a href="https://www.facebook.com/" target="_blank">
-            <FaceBookIcon className=" cursor-pointer" />
+            <Image
+              src={FooterIcon.FaceBookIcon}
+              alt={'facebook'}
+              width={IconSize}
+              height={IconSize}
+            />
           </a>
           <a
             href="https://github.com/orgs/HanriverProject/repositories"
             target="_blank"
           >
-            <GitHubIcon className=" cursor-pointer" />
+            <Image
+              src={FooterIcon.GitHubIcon}
+              alt={'github'}
+              width={IconSize}
+              height={IconSize}
+            />
           </a>
           <a href="https://www.instagram.com/" target="_blank">
-            <InstaGramIcon className=" cursor-pointer" />
+            <Image
+              src={FooterIcon.InstaGramIcon}
+              alt={'instagram'}
+              width={IconSize}
+              height={IconSize}
+            />
           </a>
         </figure>
       </div>
