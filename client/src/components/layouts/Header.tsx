@@ -1,20 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
-
 import logo from '@/assets/logo.svg';
 import search from '@/assets/icons/search.svg';
-import cart from '@/assets/icons/cart.svg';
-import mypage from '@/assets/icons/mypage.svg';
-import notify from '@/assets/icons/notify.svg';
+
+import { FC } from 'react';
+import {
+  headerTopLeft,
+  headerTopRight,
+  headerIconList,
+} from '../../constants/headerCnstants';
 
 interface HeaderProps {}
 
-const categorys = ['국내도서', '해외도서', 'eBook'];
-const headerTopRight = ['회원가입', '로그인'];
-
 type HeaderListItemProps = {
   text: string;
+};
+
+type HeaderIconListItemProps = {
+  icon: string;
+  alt: string;
 };
 
 const HeaderListItem = ({ text }: HeaderListItemProps) => {
@@ -23,6 +27,16 @@ const HeaderListItem = ({ text }: HeaderListItemProps) => {
       <Link href="#">
         <span className="text-2xl text-slate-lightgrey">{text}</span>
       </Link>
+    </li>
+  );
+};
+
+const HeaderIconListItem = ({ icon, alt }: HeaderIconListItemProps) => {
+  return (
+    <li>
+      <button>
+        <Image src={icon} width={48} height={48} alt={alt} />
+      </button>
     </li>
   );
 };
@@ -39,7 +53,7 @@ const Header: FC<HeaderProps> = ({}) => {
       >
         <div id="header-top-left">
           <ul className="flex gap-8">
-            {categorys.map((category, index) => (
+            {headerTopLeft.map((category, index) => (
               <HeaderListItem key={index} text={category} />
             ))}
           </ul>
@@ -95,31 +109,13 @@ const Header: FC<HeaderProps> = ({}) => {
           </div>
           <div className="w-full">
             <ul className="flex w-full gap-16">
-              <li>
-                <button>
-                  <Image
-                    src={notify}
-                    width={48}
-                    height={48}
-                    alt="Notify Icon"
-                  />
-                </button>
-              </li>
-              <li>
-                <button>
-                  <Image src={cart} width={48} height={48} alt="Cart Icon" />
-                </button>
-              </li>
-              <li>
-                <button>
-                  <Image
-                    src={mypage}
-                    width={48}
-                    height={48}
-                    alt="MyPage Icon"
-                  />
-                </button>
-              </li>
+              {headerIconList.map((item, index) => (
+                <HeaderIconListItem
+                  key={index}
+                  icon={item.icon}
+                  alt={item.icon}
+                />
+              ))}
             </ul>
           </div>
         </div>
