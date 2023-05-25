@@ -45,11 +45,12 @@ const Header: FC<HeaderProps> = ({}) => {
   const logoDropShadow = {
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
   };
+
   return (
     <header className="flex flex-col w-full">
       <section
         id="header-top"
-        className="flex items-center justify-between w-full h-20 py-2 px-16 border-b border-b-slate-lightgrey"
+        className="flex items-center justify-between w-full h-20 py-2 px-12 border-b border-b-slate-lightgrey"
       >
         <div id="header-top-left">
           <ul className="flex gap-8">

@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main>Initial Commit</main>;
+  return <main className="flex-1">Initial Commit</main>;
 }
