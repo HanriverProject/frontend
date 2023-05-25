@@ -17,6 +17,7 @@ module.exports = {
         'slate-lightdark': '#333333',
         'slate-lightgrey': '#D1D1D1',
         'slate-lightwhite': '#DCDCDC',
+        'slate-buttongrey': '#929292',
         'accent-blue': '#3586D1',
       },
     },
