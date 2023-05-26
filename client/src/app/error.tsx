@@ -17,20 +17,10 @@ const error: FC<errorProps> = ({ error, reset }) => {
 
   return (
     <PaddingContainer>
-      <>
-        <Image
-          src={NotFound}
-          alt={'404 not found image'}
-          width={500}
-          height={500}
-        />
-        <Button
-          variant={'blue'}
-          size={'lg'}
-          label={'Try Again'}
-          onClick={() => reset()}
-        />
-      </>
+      <div className=" flex items-center justify-center flex-col">
+        <Image src={NotFound} alt={'error image'} width={500} height={500} />
+        <Button variant={'blue'} size={'lg'} label={'Try Again'} />
+      </div>
     </PaddingContainer>
   );
 };
