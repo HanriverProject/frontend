@@ -1,10 +1,19 @@
+'use client';
 import { FC } from 'react';
 import { ThemeProvider } from 'next-themes';
 
-interface ProvidersProps {}
+interface ProvidersProps {
+  children: React.ReactNode;
+}
 
-const Providers: FC<ProvidersProps> = ({}) => {
-  return <div>Providers</div>;
+const Providers: FC<ProvidersProps> = ({ children }: ProvidersProps) => {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <div className=" min-h-screen select-none text-gray-700 transition-colors duration-300 dark:bg-slate-deepdark dark:text-gray-200">
+        {children}
+      </div>
+    </ThemeProvider>
+  );
 };
 
 export default Providers;
