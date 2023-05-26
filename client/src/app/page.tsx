@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button';
 import MoonIcon from '@/assets/icons/MoonIcon';
+import DarkmodeToggleBtn from '@/components/DarkmodeToggleBtn';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Button>
         <MoonIcon />
       </Button>
+      <DarkmodeToggleBtn />
     </main>
   );
 }
