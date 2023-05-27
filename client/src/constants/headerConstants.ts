@@ -7,7 +7,12 @@ export type HeaderTopProps = {
   link: string;
 };
 
-export const headerTopLeft: HeaderTopProps[] = [
+export type HeaderIconListItemProps = {
+  icon: string;
+  alt: string;
+};
+
+export const headerTopLeft = [
   { text: '국내도서', link: '#' },
   { text: '해외도서', link: '#' },
   { text: 'eBook', link: '#' },
