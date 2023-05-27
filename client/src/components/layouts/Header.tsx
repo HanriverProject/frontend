@@ -10,7 +10,6 @@ import {
   headerTopLeft,
   headerTopRight,
   headerIconList,
-  HeaderTopProps,
   HeaderIconListItemProps,
 } from '../../constants/headerConstants';
 
@@ -28,8 +27,8 @@ const HeaderListItem = ({ filter, text, link }: HeaderListItemProps) => {
     <li>
       <Link href={link}>
         <span
-          className={`text-2xl text-slate-lightgrey ${
-            filter === text ? 'text-accent-blue' : ''
+          className={`text-2xl ${
+            filter === text ? 'text-accent-blue' : 'text-slate-lightgrey'
           }`}
         >
           {text}
@@ -103,7 +102,7 @@ const Header: FC<HeaderProps> = ({}) => {
                 style={logoDropShadow}
                 alt="Logo Image"
               />
-              <div className="hidden font-bold text-4xl lg:block">
+              <div className="hidden font-bold text-2xl lg:block">
                 <span className="text-accent-blue">HAN</span>
                 RIVER BOOKS
               </div>
@@ -114,7 +113,7 @@ const Header: FC<HeaderProps> = ({}) => {
             className="shrink w-full flex items-start mr-2 p-2 border rounded-2xl border-gray-100 bg-gray-100 md:w-64 order-last md:-order-none"
           >
             <button>
-              <Image src={search} width={36} height={36} alt="Search Icon" />
+              <Image src={search} width={24} height={24} alt="Search Icon" />
             </button>
             <input
               type="text"
