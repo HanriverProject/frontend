@@ -1,31 +1,39 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/assets/logo.svg';
 import search from '@/assets/icons/search.svg';
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   headerTopLeft,
   headerTopRight,
   headerIconList,
+  HeaderTopProps,
+  HeaderIconListItemProps,
 } from '../../constants/headerConstants';
 
 interface HeaderProps {}
 
 type HeaderListItemProps = {
+  filter?: string;
   text: string;
+  link: string;
 };
 
-type HeaderIconListItemProps = {
-  icon: string;
-  alt: string;
-};
-
-const HeaderListItem = ({ text }: HeaderListItemProps) => {
+const HeaderListItem = ({ filter, text, link }: HeaderListItemProps) => {
+  console.log(filter === text);
   return (
     <li>
-      <Link href="#">
-        <span className="text-2xl text-slate-lightgrey">{text}</span>
+      <Link href={link}>
+        <span
+          className={`text-2xl text-slate-lightgrey ${
+            filter === text ? 'text-accent-blue' : ''
+          }`}
+        >
+          {text}
+        </span>
       </Link>
     </li>
   );
@@ -33,15 +41,20 @@ const HeaderListItem = ({ text }: HeaderListItemProps) => {
 
 const HeaderIconListItem = ({ icon, alt }: HeaderIconListItemProps) => {
   return (
-    <li>
-      <button>
-        <Image src={icon} width={48} height={48} alt={alt} />
-      </button>
-    </li>
+    <div className="my-0 mx-4">
+      <Link href="#">
+        <Image src={icon} alt={alt} />
+      </Link>
+    </div>
   );
 };
 
+const filters = headerTopLeft.map((item) => item.text);
+
 const Header: FC<HeaderProps> = ({}) => {
+  const [isLogin, setIsLogin] = useState(false);
+  const [filter, setFilter] = useState(filters[0]);
+
   const logoDropShadow = {
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
   };
@@ -49,54 +62,56 @@ const Header: FC<HeaderProps> = ({}) => {
     <header className="flex flex-col w-full">
       <section
         id="header-top"
-        className="flex items-center justify-between w-full h-20 py-2 px-16 border-b border-b-slate-lightgrey"
+        className="flex items-center justify-around w-full h-20 border-b border-b-slate-lightgrey md:py-2 md:px-16 md:justify-between"
       >
         <div id="header-top-left">
           <ul className="flex gap-8">
             {headerTopLeft.map((category, index) => (
-              <HeaderListItem key={index} text={category} />
+              <HeaderListItem
+                key={index}
+                filter={filter}
+                text={category.text}
+                link={category.link}
+              />
             ))}
           </ul>
         </div>
 
-        <div id="header-top-right">
+        <div id="header-top-right" className="hidden md:block">
           <ul className="flex gap-8">
-            {headerTopRight.map((text, index) => (
-              <li key={index}>
-                <Link href="#">
-                  <span className="text-2xl text-slate-lightgrey">{text}</span>
-                </Link>
-              </li>
+            {headerTopRight.map((item, index) => (
+              <HeaderListItem key={index} text={item.text} link={item.link} />
             ))}
           </ul>
         </div>
       </section>
       <section
         id="header-bottom"
-        className="flex items-center w-full py-8 px-20 justify-between"
+        className="flex items-center w-full md:py-2 md:px-16"
       >
-        <Link href="/" as={'image'}>
-          <div id="header-bottom-left" className="flex items-center gap-2">
-            <Image
-              src={logo}
-              width={64}
-              height={64}
-              style={logoDropShadow}
-              alt="Logo Image"
-            />
-            <div className="font-bold text-4xl">
-              <span className="text-accent-blue">HAN</span>
-              RIVER BOOKS
-            </div>
+        <nav className="flex items-center justify-between w-full flex-wrap md:flex-nowrap">
+          <div className="flex m-0 mr-auto p-4">
+            <Link
+              href="/"
+              as={'image'}
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Image
+                src={logo}
+                width={48}
+                height={48}
+                style={logoDropShadow}
+                alt="Logo Image"
+              />
+              <div className="hidden font-bold text-4xl lg:block">
+                <span className="text-accent-blue">HAN</span>
+                RIVER BOOKS
+              </div>
+            </Link>
           </div>
-        </Link>
-        <div
-          id="header-bottom-right"
-          className="flex itmes-center justify-between gap-8 w-3/10 "
-        >
-          <div
+          <form
             id="header-searchbar"
-            className="flex items-center p-2 border rounded-2xl border-gray-100 bg-gray-100"
+            className="shrink w-full flex items-start mr-2 p-2 border rounded-2xl border-gray-100 bg-gray-100 md:w-64 order-last md:-order-none"
           >
             <button>
               <Image src={search} width={36} height={36} alt="Search Icon" />
@@ -104,21 +119,19 @@ const Header: FC<HeaderProps> = ({}) => {
             <input
               type="text"
               placeholder="Search something..."
-              className="w-80 ml-2 bg-transparent"
+              className="w-full ml-2 bg-transparent"
             />
+          </form>
+          <div className="flex items-center justify-center">
+            {headerIconList.map((item, index) => (
+              <HeaderIconListItem
+                key={index}
+                icon={item.icon}
+                alt={item.icon}
+              />
+            ))}
           </div>
-          <div className="w-full">
-            <ul className="flex w-full gap-16">
-              {headerIconList.map((item, index) => (
-                <HeaderIconListItem
-                  key={index}
-                  icon={item.icon}
-                  alt={item.icon}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
+        </nav>
       </section>
     </header>
   );
