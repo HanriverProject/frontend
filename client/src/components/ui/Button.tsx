@@ -41,10 +41,14 @@ const Button: FC<ButtonProps> = ({
   size,
   children,
   label,
+  className,
   ...props
 }) => {
   return (
-    <button className={cn(ButtonVariants({ variant, size }))} {...props}>
+    <button
+      className={`${cn(ButtonVariants({ variant, size }))} ${className}`}
+      {...props}
+    >
       {children && children}
       {label && label}
     </button>
