@@ -8,23 +8,20 @@ import {
   headerTopLeft,
   headerTopRight,
   headerIconList,
+  HeaderTopProps,
 } from '../../constants/headerConstants';
 
 interface HeaderProps {}
-
-type HeaderListItemProps = {
-  text: string;
-};
 
 type HeaderIconListItemProps = {
   icon: string;
   alt: string;
 };
 
-const HeaderListItem = ({ text }: HeaderListItemProps) => {
+const HeaderListItem = ({ text, link }: HeaderTopProps) => {
   return (
     <li>
-      <Link href="#">
+      <Link href={link}>
         <span className="text-2xl text-slate-lightgrey">{text}</span>
       </Link>
     </li>
@@ -54,19 +51,19 @@ const Header: FC<HeaderProps> = ({}) => {
         <div id="header-top-left">
           <ul className="flex gap-8">
             {headerTopLeft.map((category, index) => (
-              <HeaderListItem key={index} text={category} />
+              <HeaderListItem
+                key={index}
+                text={category.text}
+                link={category.link}
+              />
             ))}
           </ul>
         </div>
 
         <div id="header-top-right">
           <ul className="flex gap-8">
-            {headerTopRight.map((text, index) => (
-              <li key={index}>
-                <Link href="#">
-                  <span className="text-2xl text-slate-lightgrey">{text}</span>
-                </Link>
-              </li>
+            {headerTopRight.map((item, index) => (
+              <HeaderListItem key={index} text={item.text} link={item.link} />
             ))}
           </ul>
         </div>
