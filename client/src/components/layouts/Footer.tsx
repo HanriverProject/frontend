@@ -9,7 +9,7 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
   return (
-    <footer className=" pt-6 px-12 border-t border-slate-lightgrey mt-6">
+    <footer className=" pt-6 px-12 border-t border-slate-lightgrey mt-6 transition-all duration-300">
       <div className=" flex justify-between items-center md:flex-row flex-col">
         <div className="">
           <p className=" font-medium text-2xl hidden md:flex ">한리버</p>

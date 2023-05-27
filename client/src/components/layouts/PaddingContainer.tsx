@@ -1,11 +1,19 @@
-import { FC } from 'react';
+import { FC, HTMLAttributes } from 'react';
 
-interface PaddingContainerProps {
+interface PaddingContainerProps extends HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
-const PaddingContainer: FC<PaddingContainerProps> = ({ children }) => {
-  return <main className=" px-12">{children}</main>;
+const PaddingContainer: FC<PaddingContainerProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  return (
+    <main className={`px-12 ${className}`} {...props}>
+      {children}
+    </main>
+  );
 };
 
 export default PaddingContainer;
