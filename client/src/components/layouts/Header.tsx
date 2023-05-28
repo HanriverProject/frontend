@@ -1,31 +1,46 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/assets/logo.svg';
 import search from '@/assets/icons/search.svg';
+import HamBugerIcon from '@/assets/icons/HamBugerIcon';
+import Button from '../ui/Button';
+import DarkmodeToggleBtn from '@/components/DarkmodeToggleBtn';
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   headerTopLeft,
   headerTopRight,
   headerIconList,
+  HeaderIconListItemProps,
 } from '../../constants/headerConstants';
 
 interface HeaderProps {}
 
 type HeaderListItemProps = {
+  filter?: string;
   text: string;
+  link: string;
+  handleFilter: (filter: string) => void;
 };
 
-type HeaderIconListItemProps = {
-  icon: string;
-  alt: string;
-};
-
-const HeaderListItem = ({ text }: HeaderListItemProps) => {
+const HeaderListItem = ({
+  filter,
+  text,
+  link,
+  handleFilter,
+}: HeaderListItemProps) => {
   return (
-    <li>
-      <Link href="#">
-        <span className="text-2xl text-slate-lightgrey">{text}</span>
+    <li onClick={() => handleFilter(text)}>
+      <Link href={link}>
+        <span
+          className={`text-md ${
+            filter === text ? 'text-accent-blue' : 'text-slate-lightgrey'
+          }`}
+        >
+          {text}
+        </span>
       </Link>
     </li>
   );
@@ -33,15 +48,24 @@ const HeaderListItem = ({ text }: HeaderListItemProps) => {
 
 const HeaderIconListItem = ({ icon, alt }: HeaderIconListItemProps) => {
   return (
-    <li>
-      <button>
-        <Image src={icon} width={48} height={48} alt={alt} />
-      </button>
-    </li>
+    <div className="my-0 mx-4">
+      <Link href="#">
+        <Image src={icon} alt={alt} />
+      </Link>
+    </div>
   );
 };
 
+const filters = headerTopLeft.map((item) => item.text);
+
 const Header: FC<HeaderProps> = ({}) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [filter, setFilter] = useState(filters[0]);
+
+  const handleFilter = (filter: string) => {
+    setFilter(filter);
+  };
+
   const logoDropShadow = {
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
   };
@@ -49,66 +73,71 @@ const Header: FC<HeaderProps> = ({}) => {
     <header className="flex flex-col w-full">
       <section
         id="header-top"
-        className="flex items-center justify-between w-full h-20 py-2 px-16 border-b border-b-slate-lightgrey"
+        className="flex items-center justify-around w-full h-10 border-b border-b-slate-lightgrey md:py-2 md:px-16 md:justify-between"
       >
         <div id="header-top-left">
           <ul className="flex gap-8">
             {headerTopLeft.map((category, index) => (
-              <HeaderListItem key={index} text={category} />
+              <HeaderListItem
+                key={index}
+                filter={filter}
+                text={category.text}
+                link={category.link}
+                handleFilter={handleFilter}
+              />
             ))}
           </ul>
         </div>
 
-        <div id="header-top-right">
+        <div id="header-top-right" className="hidden md:block">
           <ul className="flex gap-8">
-            {headerTopRight.map((text, index) => (
-              <li key={index}>
-                <Link href="#">
-                  <span className="text-2xl text-slate-lightgrey">{text}</span>
-                </Link>
-              </li>
+            {headerTopRight.map((item, index) => (
+              <HeaderListItem
+                key={index}
+                text={item.text}
+                link={item.link}
+                handleFilter={() => {}}
+              />
             ))}
           </ul>
         </div>
       </section>
       <section
         id="header-bottom"
-        className="flex items-center w-full py-8 px-20 justify-between"
+        className="flex items-center w-full mb-4 md:py-2 md:px-16"
       >
-        <Link href="/" as={'image'}>
-          <div id="header-bottom-left" className="flex items-center gap-2">
-            <Image
-              src={logo}
-              width={64}
-              height={64}
-              style={logoDropShadow}
-              alt="Logo Image"
-            />
-            <div className="font-bold text-4xl">
-              <span className="text-accent-blue">HAN</span>
-              RIVER BOOKS
-            </div>
+        <nav className="flex items-center justify-between w-full flex-wrap md:flex-nowrap">
+          <div className="flex m-0 mr-auto p-4">
+            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+              <Image
+                src={logo}
+                width={48}
+                height={48}
+                style={logoDropShadow}
+                alt="Logo Image"
+              />
+              <div className="hidden font-bold text-2xl lg:block">
+                <span className="text-accent-blue">HAN</span>
+                RIVER BOOKS
+              </div>
+            </Link>
           </div>
-        </Link>
-        <div
-          id="header-bottom-right"
-          className="flex itmes-center justify-between gap-8 w-3/10 "
-        >
-          <div
+          <form
             id="header-searchbar"
-            className="flex items-center p-2 border rounded-2xl border-gray-100 bg-gray-100"
+            className="shrink w-full flex items-start my-0 mx-2 p-2 border rounded-2xl border-gray-100 bg-gray-100 md:w-64 order-last md:-order-none"
           >
             <button>
-              <Image src={search} width={36} height={36} alt="Search Icon" />
+              <Image src={search} width={24} height={24} alt="Search Icon" />
             </button>
             <input
               type="text"
               placeholder="Search something..."
-              className="w-80 ml-2 bg-transparent"
+              className="w-full ml-2 bg-transparent"
             />
-          </div>
-          <div className="w-full">
-            <ul className="flex w-full gap-16">
+          </form>
+          <div className="flex">
+            <DarkmodeToggleBtn />
+            <div className="hidden items-center justify-center md:flex">
               {headerIconList.map((item, index) => (
                 <HeaderIconListItem
                   key={index}
@@ -116,11 +145,62 @@ const Header: FC<HeaderProps> = ({}) => {
                   alt={item.icon}
                 />
               ))}
-            </ul>
+            </div>
+            <div className="block p-4 relative md:hidden">
+              {isLogin ? (
+                <Menu />
+              ) : (
+                <Button
+                  className="text-slate-950 font-bold text-sm border border-slate-lightgrey rounded-xl px-2
+              py-1"
+                  label={'로그인'}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        </nav>
       </section>
     </header>
+  );
+};
+
+const Menu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const linkStyle = {
+    display: 'flex',
+    justifyContent: 'start',
+    alignItems: 'center',
+    margin: '0 30px',
+  };
+  return (
+    <>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        <HamBugerIcon />
+      </Button>
+      {isOpen && (
+        <div className="absolute top-16 right-0 w-64 border border-slate-950 rounded-xl drop-shadow-xl bg-white">
+          <ul className="flex flex-col">
+            {headerIconList.map((item, index) => (
+              <li
+                key={index}
+                className="px-2.5 py-3 border-b-[1px] text-center border-slate-950 last:border-b-[0px]"
+              >
+                <Link href={item.link} style={linkStyle}>
+                  <Image
+                    src={item.icon}
+                    width={28}
+                    height={28}
+                    alt={item.alt}
+                    style={{ marginRight: '10px' }}
+                  />
+                  {item.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 
