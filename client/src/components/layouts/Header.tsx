@@ -59,7 +59,7 @@ const HeaderIconListItem = ({ icon, alt }: HeaderIconListItemProps) => {
 const filters = headerTopLeft.map((item) => item.text);
 
 const Header: FC<HeaderProps> = ({}) => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [filter, setFilter] = useState(filters[0]);
 
   const handleFilter = (filter: string) => {
@@ -151,11 +151,13 @@ const Header: FC<HeaderProps> = ({}) => {
               {isLogin ? (
                 <Menu />
               ) : (
-                <Button
-                  className="text-slate-950 font-bold text-sm border border-slate-lightgrey rounded-xl px-2
+                <Link href="/auth/login">
+                  <Button
+                    className="text-slate-950 font-bold text-sm border border-slate-lightgrey rounded-xl px-2
               py-1"
-                  label={'로그인'}
-                />
+                    label={'로그인'}
+                  />
+                </Link>
               )}
             </div>
           </div>

@@ -20,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          {/* <Header /> */}
           {children}
           <Footer />
         </Providers>
