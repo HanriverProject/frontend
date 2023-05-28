@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './Carousel.css';
-//
+
 interface CarouselContainerProps {}
 
 const CarouselContainer: FC<CarouselContainerProps> = ({}) => {
