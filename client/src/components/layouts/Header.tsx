@@ -50,7 +50,7 @@ const HeaderIconListItem = ({ icon, alt }: HeaderIconListItemProps) => {
   return (
     <div className="my-0 mx-4">
       <Link href="#">
-        <Image src={icon} alt={alt} />
+        <Image width={32} height={32} src={icon} alt={alt} />
       </Link>
     </div>
   );
@@ -109,7 +109,7 @@ const Header: FC<HeaderProps> = ({}) => {
       >
         <nav className="flex items-center justify-between w-full flex-wrap md:flex-nowrap">
           <div className="flex m-0 mr-auto p-4">
-            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+            <Link href="/" className="flex items-center">
               <Image
                 src={logo}
                 width={48}
@@ -167,12 +167,7 @@ const Header: FC<HeaderProps> = ({}) => {
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const linkStyle = {
-    display: 'flex',
-    justifyContent: 'start',
-    alignItems: 'center',
-    margin: '0 30px',
-  };
+
   return (
     <>
       <Button onClick={() => setIsOpen(!isOpen)}>
@@ -186,7 +181,10 @@ const Menu = () => {
                 key={index}
                 className="px-2.5 py-3 border-b-[1px] text-center border-slate-950 last:border-b-[0px]"
               >
-                <Link href={item.link} style={linkStyle}>
+                <Link
+                  href={item.link}
+                  className="flex justify-center items-center my-0 mx-[30px]"
+                >
                   <Image
                     src={item.icon}
                     width={28}
