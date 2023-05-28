@@ -10,7 +10,7 @@ const PaddingContainer: FC<PaddingContainerProps> = ({
   ...props
 }) => {
   return (
-    <main className={`px-12 ${className}`} {...props}>
+    <main className={`flex-1 px-12 ${className}`} {...props}>
       {children}
     </main>
   );
