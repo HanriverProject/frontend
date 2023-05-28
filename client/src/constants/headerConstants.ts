@@ -8,7 +8,7 @@ export type HeaderTopProps = {
 };
 
 export type HeaderIconListItemProps = {
-  icon: string;
+  icon: any;
   alt: string;
 };
 
@@ -22,7 +22,7 @@ export const headerTopRight: HeaderTopProps[] = [
   { text: '로그인', link: '/auth/login' },
 ];
 export const headerIconList = [
-  { icon: notify, alt: 'Notification Icon' },
-  { icon: cart, alt: 'Cart Icon' },
-  { icon: mypage, alt: 'MyPage Icon' },
+  { icon: notify, text: '알림', alt: 'Notification Icon', link: '#' },
+  { icon: cart, text: '장바구니', alt: 'Cart Icon', link: '#' },
+  { icon: mypage, text: '마이페이지', alt: 'MyPage Icon', link: '#' },
 ];
