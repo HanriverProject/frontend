@@ -30,8 +30,8 @@ const HamBugerIcon = ({ className }: SvgTagProps) => {
           y2="22.891"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.237" stop-color="#3BC9F3" />
-          <stop offset="0.85" stop-color="#1591D8" />
+          <stop offset="0.237" stopColor="#3BC9F3" />
+          <stop offset="0.85" stopColor="#1591D8" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_99_2231"
@@ -41,8 +41,8 @@ const HamBugerIcon = ({ className }: SvgTagProps) => {
           y2="34.891"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.237" stop-color="#3BC9F3" />
-          <stop offset="0.85" stop-color="#1591D8" />
+          <stop offset="0.237" stopColor="#3BC9F3" />
+          <stop offset="0.85" stopColor="#1591D8" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_99_2231"
@@ -52,8 +52,8 @@ const HamBugerIcon = ({ className }: SvgTagProps) => {
           y2="46.891"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.237" stop-color="#3BC9F3" />
-          <stop offset="0.85" stop-color="#1591D8" />
+          <stop offset="0.237" stopColor="#3BC9F3" />
+          <stop offset="0.85" stopColor="#1591D8" />
         </linearGradient>
       </defs>
     </svg>
