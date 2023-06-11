@@ -10,9 +10,7 @@ import Image from 'next/image';
 
 export const CarouselVariants = cva(
   `
-   w-[20rem] h-[9.5rem] 
-   md:w-[25vw] md:h-[15rem]
-   lg:w-[30rem]
+   w-[37vw] min-h-[240px] max-h-[240px]
    
    transition-all duration-300
    p-2 md:pt-4 mx-4
@@ -67,8 +65,7 @@ const Carousel: FC<CarouselProps> = ({
         alt={subject}
         width={200}
         height={150}
-        sizes={'(max-width:768px) 100px, 150px'}
-        className=" my-auto mx-auto rounded-lg hidden lg:flex"
+        className="mx-auto rounded-lg max-w-[150px] max-h-[200px]"
       />
     </figure>
   );

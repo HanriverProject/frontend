@@ -20,7 +20,10 @@ export default function Home() {
     <>
       <PaddingContainer className=" flex justify-center items-center flex-col">
         <CarouselContainer />
-        <CardContainer />
+        <CardContainer className=" my-8 " />
+        <CardContainer className=" my-8 " />
+        <CardContainer className=" my-8 " />
+        <CardContainer className=" my-8 " />
         {status === 'authenticated' ? '로그인성공' : '로그인실패'}
         <Button label="구글로 로그인해보기" onClick={() => signIn('google')} />
       </PaddingContainer>
