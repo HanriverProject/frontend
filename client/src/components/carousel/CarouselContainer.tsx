@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './Carousel.css';
-//
+
 interface CarouselContainerProps {}
 
 const CarouselContainer: FC<CarouselContainerProps> = ({}) => {
@@ -27,7 +27,7 @@ const CarouselContainer: FC<CarouselContainerProps> = ({}) => {
       spaceBetween={10}
       slidesPerView={1}
       className={`
-      w-[20rem] h-[10rem] md:w-[30rem] md:h-[15rem] lg:w-[61rem] my-6 max-w-[500px] md:max-w-[976px] max-h-[15rem] 
+      max-w-[1440px] h-[15rem] w-[100vw]
        `}
       breakpoints={{
         976: {
